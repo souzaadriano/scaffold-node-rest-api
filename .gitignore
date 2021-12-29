@@ -1,0 +1,9 @@
+application/node_modules
+.vscode
+application/dist
+application/src/Sandbox.dev.ts
+application/src/Dev
+config/
+docker-compose.yml
+log
+database

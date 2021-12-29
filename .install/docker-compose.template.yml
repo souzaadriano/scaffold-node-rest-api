@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  rest_api:
+    image: node:16
+    command: "yarn start"
+    working_dir: /Application
+    container_name: rest_api
+    hostname: rest_api
+    restart: always
+    env_file: ./config/.env
+    ports:
+      - 3080:80
+    volumes:
+      - ./application:/Application
+      - ./config/database.yml:/conf/database.yml
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://rest_api:80/health-check"]
+      interval: 3s
+      timeout: 3s
+      retries: 3
